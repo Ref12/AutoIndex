@@ -6,4 +6,17 @@ set DeployExtension=false
 
 call build.cmd -Binlog -SkipUnitTest
 
-move %SrcDir%/msbuild.build.binlog %BinLogDir%
+echo dir %SrcDir%
+dir %SrcDir%
+
+echo dir .
+dir .
+
+echo mkdir %BinLogDir%
+mkdir %BinLogDir%
+
+echo move msbuild.build.binlog %BinLogDir%
+move msbuild.build.binlog %BinLogDir%
+
+echo move %SrcDir%\msbuild.build.binlog %BinLogDir%
+move %SrcDir%\msbuild.build.binlog %BinLogDir%
