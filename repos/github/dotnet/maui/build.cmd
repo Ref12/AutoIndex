@@ -1,4 +1,4 @@
-#Taken from https://github.com/dotnet/maui/blob/main/.github/DEVELOPMENT.md
+REM Taken from https://github.com/dotnet/maui/blob/main/.github/DEVELOPMENT.md
 
 REM install local tools required to build (cake, pwsh, etc..)
 dotnet tool restore
