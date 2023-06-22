@@ -1,0 +1,48 @@
+<Project>
+    <!-- 
+    The purpose of this file is to limit the amount of target frameworks built. This is done by injecting into
+    cross targeted projects (i.e. TargetFrameworks is set instead of a single TargetFramework) and only build
+    the primary target framework for the default Build action. Importantly, ProjectReferences can still trigger particular
+    target framework builds of a project as needed.
+    -->
+
+  <Target Name="_ComputeTargetFrameworkItems" Returns="@(InnerOutput)">
+
+    <PropertyGroup>
+      <_PrimaryTargetFramework Condition="'$(_PrimaryTargetFramework)' == '' AND '$(TargetFrameworks.Contains(net7.0))' == 'True'">net7.0</_PrimaryTargetFramework>
+      <_PrimaryTargetFramework Condition="'$(_PrimaryTargetFramework)' == '' AND '$(TargetFrameworks.Contains(net6.0))' == 'True'">net6.0</_PrimaryTargetFramework>
+      <_PrimaryTargetFramework Condition="'$(_PrimaryTargetFramework)' == '' AND '$(TargetFrameworks.Contains(net5.0))' == 'True'">net5.0</_PrimaryTargetFramework>
+      <_PrimaryTargetFramework Condition="'$(_PrimaryTargetFramework)' == '' AND '$(TargetFrameworks.Contains(netstandard2.1))' == 'True'">netstandard2.1</_PrimaryTargetFramework>
+      <_PrimaryTargetFramework Condition="'$(_PrimaryTargetFramework)' == '' AND '$(TargetFrameworks.Contains(netstandard2.0))' == 'True'">netstandard2.0</_PrimaryTargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_TargetFramework Include="$(TargetFrameworks)" />
+      <!-- Make normalization explicit: Trim; Deduplicate by keeping first occurrence, case insensitive -->
+      <_TargetFrameworkNormalized Include="@(_TargetFramework->Trim()->Distinct())" />
+      <_InnerBuildProjects Include="$(MSBuildProjectFile)">
+        <AdditionalProperties>TargetFramework=%(_TargetFrameworkNormalized.Identity)</AdditionalProperties>
+        <IsPrimary Condition="'%(_TargetFrameworkNormalized.Identity)' == '$(_PrimaryTargetFramework)'">true</IsPrimary>
+        <!-- Mark all inner projects as primary if we didn't pick a primary target framework -->
+        <IsPrimary Condition="'$(_PrimaryTargetFramework)' == ''">true</IsPrimary>
+      </_InnerBuildProjects>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="DispatchToInnerBuilds"
+          DependsOnTargets="_ComputeTargetFrameworkItems"
+          Returns="@(InnerOutput)">
+
+    <ItemGroup>
+      <_InnerBuildProjectsToDispatch Include="@(_InnerBuildProjects->WithMetadataValue('IsPrimary', 'true'))" />
+    </ItemGroup>
+
+    <!-- If this logic is changed, also update Clean -->
+    <MSBuild Projects="@(_InnerBuildProjectsToDispatch)"
+             Condition="'@(_InnerBuildProjectsToDispatch)' != '' "
+             Targets="$(InnerTargets)"
+             BuildInParallel="$(BuildInParallel)">
+      <Output ItemName="InnerOutput" TaskParameter="TargetOutputs" />
+    </MSBuild>
+  </Target>
+</Project>
