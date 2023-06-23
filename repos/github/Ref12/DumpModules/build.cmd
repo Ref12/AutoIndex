@@ -1,2 +1,3 @@
 REM Build
-dotnet build /r /bl:%CodexDebugDir%\build.binlog /p:CustomAfterMicrosoftCommonTargets="%CodexExtractTargets%"
+dotnet build /r /bl:%BinLogDir%\build.binlog 
+REM /p:CustomAfterMicrosoftCommonTargets="%CodexExtractTargets%"
