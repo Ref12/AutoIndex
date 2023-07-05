@@ -1,0 +1,20 @@
+name: Mirror Main to PublicMain
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Create and Push PublicMain Branch
+      run: |
+        git checkout -B publicmain
+        git push origin publicmain --force
