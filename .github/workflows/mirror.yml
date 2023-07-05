@@ -1,4 +1,4 @@
-name: Mirror Main to PublicMain
+name: Mirror main to automain
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
       
-    - name: Create and Push PublicMain Branch
+    - name: Create and Push automain Branch
       run: |
-        git checkout -B publicmain
-        git push origin publicmain --force
+        git checkout -B automain
+        git push origin automain --force
