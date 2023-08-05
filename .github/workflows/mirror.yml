@@ -1,0 +1,20 @@
+name: Mirror main to automain
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Create and Push automain Branch
+      run: |
+        git checkout -B automain
+        git push origin automain --force
