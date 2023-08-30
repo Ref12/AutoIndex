@@ -1,0 +1,7 @@
+<Project DefaultTargets="Build">
+    <Target Name="Build">
+
+        <Warning Text="$(MSBuildBinPath)" />
+
+    </Target>
+</Project>
