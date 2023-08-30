@@ -4,4 +4,4 @@ move "%ConfigRoot%\repos\.build\Binlog.Directory.build.rsp" "%SrcDir%\..\Directo
 dir "%SrcDir%\.."
 
 REM Call build
-call "%SrcDir%\build.cmd"
+call "%SrcDir%\build.cmd" Compile
