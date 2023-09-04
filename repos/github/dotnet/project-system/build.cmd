@@ -1,3 +1,5 @@
+set MSBuildPath=dotnet build
+
 REM Build using arcade build logic
 call "%SrcDir%\build.cmd" /p:Test=false
 
