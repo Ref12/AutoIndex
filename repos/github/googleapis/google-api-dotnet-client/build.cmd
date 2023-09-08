@@ -1,1 +1,1 @@
-dotnet build build.proj /bl:%BinLogDir%\build.binlog
+dotnet build "%~dp0\build.proj" "/bl:%BinLogDir%\build.binlog"
