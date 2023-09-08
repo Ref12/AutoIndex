@@ -1,1 +1,1 @@
-del "%SrcDir%/nuget.config"
+del "%SrcDir%\nuget.config"
