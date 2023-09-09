@@ -1,7 +1,5 @@
 <Project Sdk="Microsoft.Build.Traversal/3.3.0">
   <ItemGroup>
-    <ProjectReference Condition="'$(CodexBuildSolutions)' != ''" Include="$(CodexBuildSolutions)" />
-
     <!-- Build all the generated csproj files -->
     <ProjectReference Include="$(SrcDir)\Src\Generated\**\*.csproj" />
   </ItemGroup>
