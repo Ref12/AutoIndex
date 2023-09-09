@@ -1,6 +1,12 @@
-<Project Sdk="Microsoft.Build.Traversal/3.3.0">
+<Project Sdk="Microsoft.Build.Traversal/3.3.0" DefaultTargets="BuildSolutions;Build">
   <ItemGroup>
+    <SolutionReference Condition="'$(CodexBuildSolutions)' != ''" Include="$(CodexBuildSolutions)" />
+
     <!-- Build all the generated csproj files -->
     <ProjectReference Include="$(SrcDir)\Src\Generated\**\*.csproj" />
   </ItemGroup>
+
+  <Target Name="BuildSolutions" Condition="'$(CodexBuildSolutions)' != ''">
+    <MSBuild Projects="%(SolutionReference.FullPath)" />
+  </Target>
 </Project>
