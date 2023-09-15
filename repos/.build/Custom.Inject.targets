@@ -29,6 +29,14 @@
     </ItemGroup>
   </Target>
 
+  <Target Name="SetProjectPrimaryTargetOverride"
+          Condition="'$(_PrimaryTargetFramework)' != ''"
+          BeforeTargets="_GetRestoreTargetFrameworksAsItems">
+      <PropertyGroup>
+        <_TargetFrameworkOverride>$(_PrimaryTargetFramework)</_TargetFrameworkOverride>
+      </PropertyGroup>
+  </Target>
+
   <Target Name="DispatchToInnerBuilds"
           DependsOnTargets="_ComputeTargetFrameworkItems"
           Returns="@(InnerOutput)">
