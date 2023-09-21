@@ -1,1 +1,1 @@
-call "%CodexBuildConfigRoot%\nukecompile.cmd"
+call "%CodexBuildConfigRoot%\nukecompile.cmd" Build
