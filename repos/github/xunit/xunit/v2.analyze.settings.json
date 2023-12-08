@@ -1,0 +1,6 @@
+{
+    "addArguments": [
+        "--alias",
+        "xunit/xunit/{branch}"
+    ]
+}
