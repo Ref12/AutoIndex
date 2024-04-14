@@ -22,10 +22,10 @@ function Get-CacheConfig {
     $remoteCache = @{
         Assembly                   = "BuildXL.Cache.MemoizationStoreAdapter";
         Type                       = "BuildXL.Cache.MemoizationStoreAdapter.MemoizationStoreCacheFactory";
-        CacheId                    = "SelfhostCS2L1";
+        CacheId                    = "SelfhostCS2L2";
         MaxCacheSizeInMB           = 40480;
         CacheRootPath              = $env:BUILDXL_REMOTE_CACHE_DIRECTORY;
-        CacheLogPath               = "[BuildXLSelectedLogPath]";
+        CacheLogPath               = "[BuildXLSelectedLogPath].remote.log";
         UseStreamCAS               = $true;
         UseRocksDbMemoizationStore = $true;
     };
