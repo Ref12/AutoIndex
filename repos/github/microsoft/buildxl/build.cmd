@@ -1,4 +1,4 @@
-set BUILDXL_LOG_DIR=%CodexDebugDir%\bxllogs
+set BUILDXL_LOG_DIR=Z:\bxllogs
 
 echo ----- Writing cache config -----
 
