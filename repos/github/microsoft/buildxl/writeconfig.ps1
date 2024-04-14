@@ -19,15 +19,24 @@ function Get-CacheConfig {
         New-Item -Path $env:BUILDXL_REMOTE_CACHE_DIRECTORY -ItemType Directory
     }
 
+    # $remoteCache = @{
+    #     Assembly                   = "BuildXL.Cache.MemoizationStoreAdapter";
+    #     Type                       = "BuildXL.Cache.MemoizationStoreAdapter.MemoizationStoreCacheFactory";
+    #     CacheId                    = "SelfhostCS2L2";
+    #     MaxCacheSizeInMB           = 40480;
+    #     CacheRootPath              = $env:BUILDXL_REMOTE_CACHE_DIRECTORY;
+    #     CacheLogPath               = "[BuildXLSelectedLogPath].remote.log";
+    #     UseStreamCAS               = $true;
+    #     UseRocksDbMemoizationStore = $true;
+    # };
+
     $remoteCache = @{
-        Assembly                   = "BuildXL.Cache.MemoizationStoreAdapter";
-        Type                       = "BuildXL.Cache.MemoizationStoreAdapter.MemoizationStoreCacheFactory";
+        Assembly                   = "BuildXL.Cache.BasicFilesystem";
+        Type                       = "BuildXL.Cache.BasicFilesystem.BasicFilesystemCacheFactory";
         CacheId                    = "SelfhostCS2L2";
-        MaxCacheSizeInMB           = 40480;
         CacheRootPath              = $env:BUILDXL_REMOTE_CACHE_DIRECTORY;
-        CacheLogPath               = "[BuildXLSelectedLogPath].remote.log";
-        UseStreamCAS               = $true;
-        UseRocksDbMemoizationStore = $true;
+    #    CacheLogPath               = "[BuildXLSelectedLogPath].remote.log";
+        StrictMetadataCasCoupling  = $true;
     };
 
     $resultCache = @{
