@@ -13,7 +13,7 @@ set CSARGS_OUTPUT_DIR==%CodexDebugDir%\csargs
 
 echo ----- Running BuildXL build -----
 
-call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath "/f:(requiredfor(tag='compile')) and ~(dpc(id='Pip3CB982272DD212B2'))" /q:Debug /incrementalScheduling- /logsDirectory:%BUILDXL_LOG_DIR% /logExecution /server- ^
+call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath "/f:(requiredfor(tag='compile'))and~(dpc(id='Pip3CB982272DD212B2'))" /q:Debug /incrementalScheduling- /logsDirectory:%BUILDXL_LOG_DIR% /logExecution /server- ^
 /cacheConfigFilePath:%CodexBuildTempDir%/bxlcache/cacheconfig.json
 
 echo ----- Running Codex execution analyzer -----
