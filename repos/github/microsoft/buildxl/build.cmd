@@ -13,7 +13,7 @@ set CSARGS_OUTPUT_DIR==%CodexDebugDir%\csargs
 
 echo ----- Running BuildXL build -----
 
-call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath /f:tag='compile' /q:Debug /incrementalScheduling- /enableLazyOutputs- /logsDirectory:%BUILDXL_LOG_DIR% /logExecution /server- ^
+call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath "/f:requiredfor(tag='compile')" /q:Debug /incrementalScheduling- /logsDirectory:%BUILDXL_LOG_DIR% /logExecution /server- ^
 /cacheConfigFilePath:%CodexBuildTempDir%/bxlcache/cacheconfig.json
 
 echo ----- Running Codex execution analyzer -----
