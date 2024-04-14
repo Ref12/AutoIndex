@@ -52,4 +52,4 @@ if (!(Test-Path $env:BUILDXL_LOCAL_CACHE_DIRECTORY)) {
     New-Item -Path $env:BUILDXL_LOCAL_CACHE_DIRECTORY -ItemType Directory
 }
 
-Set-Content -Path "$env:BUILDXL_LOCAL_CACHE_DIRECTORY/config.json" -Value (ConvertTo-Json $configOptions)
+Set-Content -Path "$env:BUILDXL_LOCAL_CACHE_DIRECTORY/cacheconfig.json" -Value (ConvertTo-Json $configOptions)

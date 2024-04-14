@@ -7,14 +7,14 @@ set BUILDXL_REMOTE_CACHE_DIRECTORY=Z:/bxlcache
 
 set BXL_CACHE_CONFIG_PATH="%~dp0/writeconfig.ps1"
 
-powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command %BXL_CACHE_CONFIG_PATH%
+powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%~dp0/writeconfig.ps1"
 
 set CSARGS_OUTPUT_DIR==%CodexDebugDir%\csargs
 
 echo ----- Running BuildXL build -----
 
 call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath /f:tag='compile' /q:Debug /incrementalScheduling- /enableLazyOutputs- /logsDirectory:%BUILDXL_LOG_DIR% /logExecution /server- ^
-/cacheConfigFilePath:%BXL_CACHE_CONFIG_PATH%
+/cacheConfigFilePath:%CodexBuildTempDir%/bxlcache/cacheconfig.json
 
 echo ----- Running Codex execution analyzer -----
 
