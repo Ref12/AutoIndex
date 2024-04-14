@@ -7,6 +7,7 @@ if (!(Test-Path $env:BUILDXL_LOCAL_CACHE_DIRECTORY)) {
 Set-Content -Path "$env:BUILDXL_LOCAL_CACHE_DIRECTORY/config.json" -Value (ConvertTo-Json $configOptions)
 
 function Get-CacheConfig {
+    param();
     $localCache = @{
         Assembly                   = "BuildXL.Cache.MemoizationStoreAdapter";
         Type                       = "BuildXL.Cache.MemoizationStoreAdapter.MemoizationStoreCacheFactory";
