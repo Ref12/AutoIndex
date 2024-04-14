@@ -9,7 +9,7 @@ set BXL_CACHE_CONFIG_PATH="%~dp0/writeconfig.ps1"
 
 powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%~dp0/writeconfig.ps1"
 
-set CSARGS_OUTPUT_DIR==%CodexDebugDir%\csargs
+set CSARGS_OUTPUT_DIR=%CodexDebugDir%\csargs
 echo CSARGS_OUTPUT_DIR=%CSARGS_OUTPUT_DIR%
 
 echo ----- Running BuildXL build -----
