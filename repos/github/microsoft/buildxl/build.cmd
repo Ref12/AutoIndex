@@ -1,4 +1,4 @@
-set BUILDXL_LOG_DIR=Z:\bxllogs2
+set BUILDXL_LOG_DIR=%CodexDebugDir%/bxllogs
 
 echo ----- Writing cache config -----
 
@@ -10,13 +10,18 @@ set BXL_CACHE_CONFIG_PATH="%~dp0/writeconfig.ps1"
 powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%~dp0/writeconfig.ps1"
 
 set CSARGS_OUTPUT_DIR==%CodexDebugDir%\csargs
+echo CSARGS_OUTPUT_DIR=%CSARGS_OUTPUT_DIR%
 
 echo ----- Running BuildXL build -----
 
-call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath "/f:(requiredfor(tag='compile'))and~(dpc(id='Pip3CB982272DD212B2'))" /q:Debug /incrementalScheduling- /logsDirectory:%BUILDXL_LOG_DIR% /logExecution /server- ^
+call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath "/f:(requiredfor(tag='compile'))and~(dpc(id='Pip3CB982272DD212B2'))" /q:Debug /incrementalScheduling- ^
+/logsDirectory:%BUILDXL_LOG_DIR% /logExecution /server- ^
 /cacheConfigFilePath:%CodexBuildTempDir%/bxlcache/cacheconfig.json
 
 echo ----- Running Codex execution analyzer -----
+
+echo CSARGS_OUTPUT_DIR=%CSARGS_OUTPUT_DIR%
+echo %SrcDir%\bxlanalyzer.cmd /mode:Codex /xl:%BUILDXL_LOG_DIR% /o:%CSARGS_OUTPUT_DIR%
 
 call %SrcDir%\bxlanalyzer.cmd /mode:Codex /xl:%BUILDXL_LOG_DIR% /o:%CSARGS_OUTPUT_DIR%
 
