@@ -62,3 +62,7 @@ if (!(Test-Path $env:BUILDXL_LOCAL_CACHE_DIRECTORY)) {
 }
 
 Set-Content -Path "$env:BUILDXL_LOCAL_CACHE_DIRECTORY/cacheconfig.json" -Value (ConvertTo-Json $configOptions)
+
+if ($env:BUILDXL_REMOTE_CACHE_DIRECTORY) {
+    Set-Content -Path "$env:BUILDXL_REMOTE_CACHE_DIRECTORY/cacheconfig.json" -Value (ConvertTo-Json $configOptions)
+}
