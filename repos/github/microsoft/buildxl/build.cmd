@@ -14,7 +14,7 @@ echo CSARGS_OUTPUT_DIR=%CSARGS_OUTPUT_DIR%
 
 echo ----- Running BuildXL build -----
 
-call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath "/f:(requiredfor(tag='compile'))and~(dpc(id='Pip3CB982272DD212B2'))" /q:Debug /incrementalScheduling- ^
+call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath "/f:(requiredfor(tag='telemetry:csc'))" /q:Debug /incrementalScheduling- ^
 /logsDirectory:%BUILDXL_LOG_DIR% /logExecution /server- ^
 /cacheConfigFilePath:%CodexBuildTempDir%/bxlcache/cacheconfig.json
 
