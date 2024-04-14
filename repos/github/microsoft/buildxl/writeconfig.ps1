@@ -1,11 +1,3 @@
-$configOptions = Get-CacheConfig;
-
-if (!(Test-Path $env:BUILDXL_LOCAL_CACHE_DIRECTORY)) {
-    New-Item -Path $env:BUILDXL_LOCAL_CACHE_DIRECTORY -ItemType Directory
-}
-
-Set-Content -Path "$env:BUILDXL_LOCAL_CACHE_DIRECTORY/config.json" -Value (ConvertTo-Json $configOptions)
-
 function Get-CacheConfig {
     param();
     $localCache = @{
@@ -19,7 +11,7 @@ function Get-CacheConfig {
         UseRocksDbMemoizationStore = $true;
     };
 
-    if (!$env:BUILDXL_REMOTE_CACHE_DIRECTORY) {
+    if (!($env:BUILDXL_REMOTE_CACHE_DIRECTORY)) {
         return $localCache;
     }
 
@@ -53,3 +45,11 @@ function Get-CacheConfig {
 
     return $resultCache;
 }
+
+$configOptions = Get-CacheConfig;
+
+if (!(Test-Path $env:BUILDXL_LOCAL_CACHE_DIRECTORY)) {
+    New-Item -Path $env:BUILDXL_LOCAL_CACHE_DIRECTORY -ItemType Directory
+}
+
+Set-Content -Path "$env:BUILDXL_LOCAL_CACHE_DIRECTORY/config.json" -Value (ConvertTo-Json $configOptions)
