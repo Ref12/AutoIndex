@@ -1,3 +1,5 @@
+call npm install -g node
+
 call "%SrcDir%\restore.cmd"
 
 REM Build using arcade build logic
