@@ -1,0 +1,1 @@
+winget install Microsoft.DotNet.SDK.Preview
