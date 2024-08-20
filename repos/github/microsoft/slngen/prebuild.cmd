@@ -1,1 +1,1 @@
-winget install Microsoft.DotNet.SDK.Preview
+call "%CodexBuildConfigRoot%\dotnet-install.cmd" -Quality preview -Channel 9.0
