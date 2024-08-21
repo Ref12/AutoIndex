@@ -1,0 +1,5 @@
+{
+    "PrependedPaths": [
+        "%CodexBuildTempDir%/dotnet"
+    ]
+}

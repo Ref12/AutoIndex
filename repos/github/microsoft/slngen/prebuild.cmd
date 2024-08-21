@@ -1,1 +1,1 @@
-call "%CodexBuildConfigRoot%\dotnet-install.cmd" -Quality preview -Channel 9.0
+call "%CodexBuildConfigRoot%\dotnet-install.cmd" -Quality preview -Channel 9.0 -InstallDir "%CodexBuildTempDir%\dotnet"
