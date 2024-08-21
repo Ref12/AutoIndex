@@ -1,0 +1,1 @@
+powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%*"
