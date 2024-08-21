@@ -2,4 +2,8 @@ curl -o "%CodexBuildTempDir%\dotnet-install.ps1" "https://dotnet.microsoft.com/d
 
 powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%CodexBuildTempDir%\dotnet-install.ps1 %*"
 
+dir "%CodexBuildTempDir%\dotnet"
+
 dotnet --version
+
+"%CodexBuildTempDir%\dotnet\dotnet" --version
