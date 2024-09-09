@@ -1,5 +1,7 @@
 set BUILDXL_LOG_DIR=%CodexDebugDir%/bxllogs
 
+mkdir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC"
+
 echo ----- Writing cache config -----
 
 set BUILDXL_LOCAL_CACHE_DIRECTORY=%CodexBuildTempDir%/bxlcache
