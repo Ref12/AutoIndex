@@ -3,7 +3,7 @@ set BUILDXL_LOG_DIR=%CodexDebugDir%/bxllogs
 echo ----- Writing cache config -----
 
 set BUILDXL_LOCAL_CACHE_DIRECTORY=%CodexBuildTempDir%/bxlcache
-set BUILDXL_REMOTE_CACHE_DIRECTORY=Z:/bxlcachefs
+REM set BUILDXL_REMOTE_CACHE_DIRECTORY=Z:/bxlcachefs
 
 set BXL_CACHE_CONFIG_PATH="%~dp0/writeconfig.ps1"
 
