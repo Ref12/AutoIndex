@@ -1,6 +1,6 @@
 set BUILDXL_LOG_DIR=%CodexDebugDir%/bxllogs
 
-mkdir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC"
+mkdir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC/14.39.33519"
 dir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC"
 dir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC/Tools"
 
