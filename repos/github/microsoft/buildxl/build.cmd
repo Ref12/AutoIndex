@@ -39,11 +39,11 @@ echo %SrcDir%\bxlanalyzer.cmd /mode:Codex /xl:%BUILDXL_LOG_DIR% /o:%CSARGS_OUTPU
 
 call %SrcDir%\bxlanalyzer.cmd /mode:Codex /xl:%BUILDXL_LOG_DIR% /o:%CSARGS_OUTPUT_DIR%
 
-subst B: %SrcDir%
-
 echo ----- Running Codex script analyzer -----
 
 call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath -DeployDev /server- ^
 /cacheConfigFilePath:%CodexBuildTempDir%/bxlcache/cacheconfig.json
 
-call %SrcDir%\Out\Selfhost\Dev\bxlScriptAnalyzer.exe /a:Codex /c:%SrcDir%\config.dsc /o:%CDXDSC_OUTPUT_DIR%
+subst B: %SrcDir%
+
+call %SrcDir%\Out\Selfhost\Dev\bxlScriptAnalyzer.exe /a:Codex /c:B:\config.dsc /o:%CDXDSC_OUTPUT_DIR%
