@@ -1,4 +1,9 @@
 {
-    "addArguments": [ "--compilerArgumentFile", "{CodexDebugDir}/csargs" ],
+    "addArguments": [ 
+        "--compilerArgumentFile", 
+        "{CodexDebugDir}/csargs",
+        "-e", 
+        "{CodexDebugDir}/cdxdsc"
+    ],
     "repoRoot": "B:/"
 }

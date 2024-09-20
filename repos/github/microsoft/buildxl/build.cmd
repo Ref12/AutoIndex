@@ -1,3 +1,5 @@
+@echo on
+
 set BUILDXL_LOG_DIR=%CodexDebugDir%/bxllogs
 
 mkdir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC/14.39.33519"
@@ -16,6 +18,9 @@ powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%~dp0/writeconfi
 set CSARGS_OUTPUT_DIR=%CodexDebugDir%\csargs
 echo CSARGS_OUTPUT_DIR=%CSARGS_OUTPUT_DIR%
 
+set CDXDSC_OUTPUT_DIR=%CodexDebugDir%\cdxdsc
+echo CDXDSC_OUTPUT_DIR=%CDXDSC_OUTPUT_DIR%
+
 echo ----- Running BuildXL build -----
 
 call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath "/f:(requiredfor(tag='telemetry:csc')or(tag='telemetry:csc'))" /q:Debug /incrementalScheduling- ^
@@ -33,4 +38,6 @@ subst B: %SrcDir%
 
 echo ----- Running Codex script analyzer -----
 
-REM call %SrcDir%\bxlanalyzer.cmd /mode:Codex /xl:%BUILDXL_LOG_DIR% /o:%CSARGS_OUTPUT_DIR%
+call %SrcDir%\bxl.cmd -DeployDev
+
+call %SrcDir%\Out\Selfhost\Dev\bxlScriptAnalyzer.exe /a:Codex /c:%SrcDir%\config.dsc /o:%CDXDSC_OUTPUT_DIR%
