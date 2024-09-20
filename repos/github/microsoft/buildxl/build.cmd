@@ -1,10 +1,15 @@
+pushd "C:\Program Files (x86)\Microsoft Visual Studio\Installer\"
+for /f "delims=" %%x in ('.\vswhere.exe -latest -property InstallationPath') do set VSPATH=%%x
+popd
+call "%VSPATH%\VC\Auxiliary\Build\vcvarsall.bat" x64
+
 @echo on
 
-set BUILDXL_LOG_DIR=%CodexDebugDir%/bxllogs
+echo VCToolsVersion=%VCToolsVersion%
 
-mkdir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC/14.39.33519"
-dir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC"
-dir "%ProgramFiles%/Microsoft Visual Studio/2022/Preview/VC/Tools"
+set MSVC_VERSION=%VCToolsVersion%
+
+set BUILDXL_LOG_DIR=%CodexDebugDir%/bxllogs
 
 echo ----- Writing cache config -----
 
