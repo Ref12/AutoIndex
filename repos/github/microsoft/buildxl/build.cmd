@@ -38,6 +38,7 @@ subst B: %SrcDir%
 
 echo ----- Running Codex script analyzer -----
 
-call %SrcDir%\bxl.cmd -DeployDev
+call %SrcDir%\bxl.cmd -DoNotUseDefaultCacheConfigFilePath -DeployDev /server- ^
+/cacheConfigFilePath:%CodexBuildTempDir%/bxlcache/cacheconfig.json
 
 call %SrcDir%\Out\Selfhost\Dev\bxlScriptAnalyzer.exe /a:Codex /c:%SrcDir%\config.dsc /o:%CDXDSC_OUTPUT_DIR%
