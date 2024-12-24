@@ -1,1 +1,1 @@
-dotnet workload restore
+dotnet workload restore build/build.proj
