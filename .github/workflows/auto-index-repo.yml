@@ -9,11 +9,11 @@ on:
         description: "Additional arguments to pass"
         required: false
         default: ''
-env:
-  CODEX_OUTPUT: ${{ runner.temp }}/cdx
   
 jobs:
   index:
+    env:
+      CODEX_OUTPUT: ${{ runner.temp }}/cdx
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
