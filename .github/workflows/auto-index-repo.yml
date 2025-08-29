@@ -1,4 +1,4 @@
-run-name: "Analyze and index ${{ inputs.buildNumber }}"
+run-name: "Analyze and index ${{ inputs.repo }}"
 on:
   workflow_dispatch:
     inputs:
