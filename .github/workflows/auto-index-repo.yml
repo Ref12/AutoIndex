@@ -1,0 +1,54 @@
+run-name: "Analyze and index ${{ inputs.buildNumber }}"
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: "The repo to build (i.e. Ref12/Codex)."
+        required: true
+      args:
+        description: "Additional arguments to pass"
+        required: false
+        default: ''
+env:
+  CODEX_OUTPUT: ${{ runner.temp }}/cdx
+  
+jobs:
+  index:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: "Install Ref12.AutoCodex"
+      shell: pwsh
+      run: |
+        dotnet tool install -g --prerelease Ref12.AutoCodex
+    
+    - name: "Index ${{ inputs.repo }}"
+      shell: pwsh
+      run: |
+        . autocodex full-index-no-upload `
+          -o "${{ env.CODEX_OUTPUT }}" `
+          -r "${{ inputs.repo }}" `
+          --config-root "${{ github.workspace }}" ${{ inputs.args }}
+
+    - name: Upload analysis artifact
+      if: ${{ always() }} 
+      uses: actions/upload-artifact@v4
+      with:
+        name: analysis
+        path: ${{ env.CODEX_OUTPUT }}/store
+
+    - name: Upload index artifact
+      if: ${{ always() }} 
+      uses: actions/upload-artifact@v4
+      with:
+        name: index
+        path: ${{ env.CODEX_OUTPUT }}/index
+
+    - name: Upload binlogs artifact
+      if: ${{ always() }} 
+      uses: actions/upload-artifact@v4
+      with:
+        name: binlogs
+        path: ${{ env.CODEX_OUTPUT }}/binlogs
+  
