@@ -42,10 +42,12 @@ jobs:
         path: ${{ env.CODEX_OUTPUT }}/store
 
     - name: Upload index artifact
+      id: upload-artifact-index
       if: ${{ always() }} 
       uses: actions/upload-artifact@v4
       with:
         name: index
+        compression-level: 0 # Needed for paging index artifact directly from artifact storage
         path: ${{ env.CODEX_OUTPUT }}/index
 
     - name: Upload binlogs artifact
@@ -54,4 +56,15 @@ jobs:
       with:
         name: binlogs
         path: ${{ env.CODEX_OUTPUT }}/binlogs
+
+    - name: Annotate artifact URL (and add clickable link in summary)
+      shell: pwsh
+      env:
+        ARTIFACT_URL: ${{ steps.upload-artifact-index.outputs.artifact-url }}
+      run: |
+        if (-not $env:ARTIFACT_URL) { Write-Error "artifact-url output missing"; exit 1 }
+        # Annotation (not clickable)
+        Write-Host "::notice title=Artifact uploaded::URL: $env:ARTIFACT_URL"
+        # Clickable link in the job summary
+        "🔗 **Artifact:** [$env:ARTIFACT_URL]($env:ARTIFACT_URL)" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8 -Append          
   
