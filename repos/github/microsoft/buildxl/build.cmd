@@ -1,3 +1,5 @@
+fsutil usn createjournal m=0x20000000 a=0x8000000 D:
+
 pushd "C:\Program Files (x86)\Microsoft Visual Studio\Installer\"
 for /f "delims=" %%x in ('.\vswhere.exe -latest -property InstallationPath') do set VSPATH=%%x
 popd
