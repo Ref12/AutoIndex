@@ -1,0 +1,1 @@
+call "%CodexBuildConfigRoot%\arcadebuild.cmd"
