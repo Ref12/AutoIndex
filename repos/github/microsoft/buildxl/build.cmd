@@ -1,11 +1,11 @@
-fsutil usn createjournal m=0x20000000 a=0x8000000 D:
-
 pushd "C:\Program Files (x86)\Microsoft Visual Studio\Installer\"
 for /f "delims=" %%x in ('.\vswhere.exe -latest -property InstallationPath') do set VSPATH=%%x
 popd
 call "%VSPATH%\VC\Auxiliary\Build\vcvarsall.bat" x64
 
 @echo on
+
+powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%~dp0/enable-change-journal.ps1"
 
 echo VCToolsVersion=%VCToolsVersion%
 
@@ -18,9 +18,9 @@ echo ----- Writing cache config -----
 set BUILDXL_LOCAL_CACHE_DIRECTORY=%CodexBuildTempDir%/bxlcache
 REM set BUILDXL_REMOTE_CACHE_DIRECTORY=Z:/bxlcachefs
 
-set BXL_CACHE_CONFIG_PATH="%~dp0/writeconfig.ps1"
+set BXL_CACHE_CONFIG_PATH="%~dp0/write-cache-config.ps1"
 
-powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%~dp0/writeconfig.ps1"
+powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "%~dp0/write-cache-config.ps1"
 
 set CSARGS_OUTPUT_DIR=%CodexDebugDir%\csargs
 echo CSARGS_OUTPUT_DIR=%CSARGS_OUTPUT_DIR%
