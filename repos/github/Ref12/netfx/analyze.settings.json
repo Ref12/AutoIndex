@@ -1,0 +1,8 @@
+{
+    "addArguments": [
+        "--noScan",
+        "--alias",
+        "referencesource/netfx/{branch}"
+    ],
+    "build": false
+}
